@@ -92,7 +92,7 @@ const Page = () => {
     },
   });
 
-  const { mutate: destroyRoom, destroyPending } = useMutation({
+  const { mutate: destroyRoom, isPending: destroyPending } = useMutation({
     mutationFn: async () => {
       await client.room.delete(null, {
         query: {
@@ -147,11 +147,10 @@ const Page = () => {
               SELF DESTRUCT
             </span>
             <span
-              className={`text-sm font-bold flex items-center gap-2 ${
-                timeRemaining !== null && timeRemaining < 60
-                  ? "text-red-500"
-                  : "text-amber-500"
-              }`}
+              className={`text-sm font-bold flex items-center gap-2 ${timeRemaining !== null && timeRemaining < 60
+                ? "text-red-500"
+                : "text-amber-500"
+                }`}
             >
               {timeRemaining !== null
                 ? formatTimeRemaining(timeRemaining)
@@ -183,11 +182,10 @@ const Page = () => {
               <div className="max-w-[80] group">
                 <div className="flex items-baseline gap-3 mb-1">
                   <span
-                    className={`text-xs font-bold ${
-                      msg.sender === username
-                        ? "text-green-500"
-                        : "text-blue-500"
-                    }`}
+                    className={`text-xs font-bold ${msg.sender === username
+                      ? "text-green-500"
+                      : "text-blue-500"
+                      }`}
                   >
                     {msg.sender === username ? "YOU" : msg.sender}
                   </span>
